@@ -2,14 +2,16 @@ import './sass/main.scss';
 import Notiflix from 'notiflix';
 import Axios from 'axios';
 
-import { imageParams, fetchCard } from './js/fetchCard.js';
-import { resultOfMarkup } from './js/resultOfMarkup.js';
+import { imageParams, fetchCard } from './js/fetchCard';
+import { resultOfMarkup } from './js/resultOfMarkup';
 
 const form = document.querySelector('.search-form');
 const gallery = document.querySelector('.gallery');
 const sentinel = document.querySelector('.sentinel');
 
-const observer = new IntersectionObserver(onEntry, { rootMargin: '200px' });
+const options = { rootMargin: '200px' };
+
+const observer = new IntersectionObserver(onEntry, options);
 
 const onSearchImages = e => {
   observer.disconnect();
@@ -36,7 +38,9 @@ const createGallery = object => {
   const totalHits = object.totalHits;
   const hitsArray = object.hits;
   if (hitsArray.length === 0) {
-    Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again');
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again',
+    );
   } else {
     if (imageParams.page === 1) {
       Notiflix.Notify.success(`Hooray! We found ${totalHits} images`);

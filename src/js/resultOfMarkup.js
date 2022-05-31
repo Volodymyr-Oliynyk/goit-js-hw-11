@@ -7,6 +7,6 @@ let lightbox = new SimpleLightbox('.gallery a', {captionDelay: 250
 
 export const resultOfMarkup = (array, container) => {
     const markup = markupCard(array);
-    container.insertAdjacentHTML('afterbegin', markup);
+    container.insertAdjacentHTML('beforeend', markup);
     lightbox.refresh();
 }
